@@ -211,8 +211,9 @@ class CardPlaceholder:
             surface.blit(suit_surf, (self.rect.right - 16, self.rect.bottom - 65))
         else:
             # Draw placeholder text
-            text_surf = FONT_SMALL.render(self.label, True, BLACK)
-            text_rect = text_surf.get_rect(center=self.rect.center)
+            text_surf = FONT_SMALL.render(self.label, True, WHITE)
+            text_rect = text_surf.get_rect(center=self.rect.midbottom)
+            text_rect.y += 13
             surface.blit(text_surf, text_rect)
 
 def run_simulation():
@@ -312,24 +313,24 @@ def main():
     ]
 
     flop_placeholders = [
-        CardPlaceholder(250, 185, "Flop Card 1"),
-        CardPlaceholder(400, 185, "Flop Card 2"),
-        CardPlaceholder(550, 185, "Flop Card 3")
+        CardPlaceholder(250, 205, "Flop Card 1"),
+        CardPlaceholder(400, 205, "Flop Card 2"),
+        CardPlaceholder(550, 205, "Flop Card 3")
     ]
 
     simulate_button = Button(
-        700, 150, 200, 50, "Run Simulation",
+        700, 90, 200, 50, "Run Simulation",
         GREEN, DARK_GREEN, WHITE,
         action=lambda: start_simulation(selector) if len(selected_cards) == 5 else None
     )
 
     clear_button = Button(
-        700, 220, 200, 50, "Clear Cards",
-        RED, (180, 0, 0), WHITE,
+        700, 160, 200, 50, "Clear Cards",
+        RED, (190, 0, 0), WHITE,
         action=lambda: clear_selection(selector)
     )
 
-    exit_button = ExitButton(700, 290, 200, 50)
+    exit_button = ExitButton(700, 230, 200, 50)
 
     animation_frame = 0
     animation_speed = 0.1
